@@ -1,0 +1,64 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Picture</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let advertisement of advertisements">
+                    <th scope="row">{{advertisement.id}}</th>
+                    <td scope="row"> <img
+                      class="img-fluid"
+                      [src]="advertisement.smallImageString"
+                      style="margin: 3px; max-width: 80px; max-height: 80px;"
+                    /></td>
+                    <td routerLink="/advertisements/{{advertisement.id}}">{{advertisement.name}}</td>
+                    <td>{{advertisement.price}}</td>
+                    <td>
+                        <button type="button" class="btn btn-success action-btn">
+                            <svg class="bi" width="32" height="32" fill="currentColor">
+                                <use xlink:href="assets/bootstrap-icons.svg#cash"/>
+                            </svg>
+                            <span> Sold</span>
+                        </button>
+                        <button routerLink="/advertisements/edit/{{advertisement.id}}" type="button" class="btn btn-primary action-btn">
+                            <svg class="bi" width="32" height="32" fill="currentColor">
+                                <use xlink:href="assets/bootstrap-icons.svg#pencil-square"/>
+                            </svg>
+                            <span> Edit</span>
+                        </button>
+                        <button type="button" (click)="deleteAdvertisement(advertisement.id)" class="btn btn-danger action-btn">
+                            <svg class="bi" width="32" height="32" fill="currentColor">
+                                <use xlink:href="assets/bootstrap-icons.svg#trash"/>
+                            </svg>
+                            <span> Delete</span>
+                        </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+</div>
+<div>
+    <svg class="bi" width="32" height="32" fill="currentColor">
+        <use xlink:href="assets/bootstrap-icons.svg#trash"/>
+    </svg>
+      <svg class="bi" width="32" height="32" fill="currentColor">
+        <use xlink:href="assets/bootstrap-icons.svg#toggles"/>
+      </svg>
+      <svg class="bi" width="32" height="32" fill="currentColor">
+        <use xlink:href="assets/bootstrap-icons.svg#shop"/>
+      </svg>
+</div>

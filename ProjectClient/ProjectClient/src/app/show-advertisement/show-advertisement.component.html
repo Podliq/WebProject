@@ -1,0 +1,71 @@
+<div class="row container-fluid">
+  <div class="col-2"></div>
+  <div class="col-5">
+    <div
+      id="carouselExampleIndicators"
+      class="carousel slide"
+      data-interval="false"
+    >
+      <ol class="carousel-indicators">
+        <li
+          *ngFor="let img of advertisement?.images; let indexOfelement = index"
+          [ngClass]="{ active: indexOfelement === 0 }"
+          data-target="#carouselExampleIndicators"
+          attr.data-slide-to="{{ indexOfelement }}"
+        ></li>
+      </ol>
+      <div class="carousel-inner">
+        <div
+          class="carousel-item active"
+          *ngFor="let img of advertisement?.images; let indexOfelement = index"
+          [ngClass]="{ active: indexOfelement === 0 }"
+        >
+          <img class="d-block w-100" [src]="img" />
+        </div>
+      </div>
+      <a
+        class="carousel-control-prev"
+        *ngIf="advertisement?.images.length > 1"
+        href="#carouselExampleIndicators"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        *ngIf="advertisement?.images.length > 1"
+        href="#carouselExampleIndicators"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  <div class="col-5 position-fixed" style="right: 0px">
+    <div class="border bg-w rounded p-3">
+      <h1 class="" style="color: #002f34">{{ advertisement?.name }}</h1>
+      <h3>{{ advertisement?.price.toFixed(2) }}$</h3>
+      <p style="word-wrap: break-word">{{ advertisement?.description }}</p>
+    </div>
+
+    <div class="border bg-w rounded p-3 mt-1">
+      <h4 class="" style="color: #002f34">Contacts</h4>
+      <div class="bg-w">
+        <svg class="bi" width="32" height="32" fill="currentColor">
+          <use xlink:href="assets/bootstrap-icons.svg#mailbox" />
+        </svg>
+        <span> Email: Podliq@abv.bg</span>
+      </div>
+      <div class="bg-w mt-1">
+        <svg class="bi" width="32" height="32" fill="currentColor">
+          <use xlink:href="assets/bootstrap-icons.svg#phone" />
+        </svg>
+        <span> Phone: 088696969</span>
+      </div>
+    </div>
+  </div>
+</div>

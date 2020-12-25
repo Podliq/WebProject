@@ -1,4 +1,4 @@
-﻿namespace ProjectApi.Infrastructure
+﻿namespace ProjectApi.Infrastructure.Extensions
 {
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.EntityFrameworkCore;
@@ -11,6 +11,8 @@
     using Data;
     using Data.Models;
     using Features.Identity;
+    using ProjectApi.Infrastructure.Filters;
+    using ProjectApi.Features.Advertisement;
 
     public static class ServiceCollectionExtensions
     {
@@ -74,10 +76,13 @@
 
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
             => services
-                .AddTransient<IIdentityService, IdentityService>();
+                .AddTransient<IIdentityService, IdentityService>()
+                .AddTransient<IAdvertisementService, AdvertisementService>()
+                .AddTransient<IImageSizeReducer, ImageHelper>();
 
         public static IServiceCollection AddSwagger(this IServiceCollection services)
-            => services.AddSwaggerGen(options =>
+            => services
+                .AddSwaggerGen(options =>
                 {
                     options.SwaggerDoc(
                         "v1",
@@ -86,6 +91,13 @@
                             Title = "My Project API",
                             Version = "v1"
                         });
+                });
+
+        public static void AddApiControllers(this IServiceCollection services)
+            => services
+                .AddControllers(options =>
+                {
+                    options.Filters.Add<ModelOrNotFoundActionFilter>();
                 });
     }
 }

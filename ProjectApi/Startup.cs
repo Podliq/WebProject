@@ -5,7 +5,7 @@ namespace ProjectApi
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
-    using Infrastructure;
+    using Infrastructure.Extensions;
 
     public class Startup
     {
@@ -24,7 +24,7 @@ namespace ProjectApi
                 .AddJwtAuthentication(services.GetApplicationSettings(Configuration))
                 .AddApplicationServices()
                 .AddSwagger()
-                .AddControllers();
+                .AddApiControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

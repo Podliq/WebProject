@@ -1,0 +1,89 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+      <form [formGroup]="advertisementForm" (ngSubmit)="create()">
+        <div class="form-group bg-w">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="name"
+            aria-describedby="name"
+          />
+          <small id="name" class="form-text text-muted">idk </small>
+        </div>
+        <div
+          *ngIf="name.touched && name.errors?.required"
+          class="alert alert-danger"
+        >
+          this field is required!
+        </div>
+        <div class="form-group bg-w">
+          <label for="price">Price</label>
+          <input
+            type="number"
+            class="form-control"
+            formControlName="price"
+            aria-describedby="price"
+          />
+        </div>
+        <div
+          *ngIf="price.touched && price.errors?.required"
+          class="alert alert-danger"
+        >
+          this field is required!
+        </div>
+        <div class="form-group bg-w">
+          <label for="description">Description</label>
+          <textarea
+            class="form-control"
+            formControlName="description"
+            id="description"
+            rows="3"
+          ></textarea>
+        </div>
+        <div
+          *ngIf="description.touched && description.errors?.required"
+          class="alert alert-danger"
+        >
+          this field is required!
+        </div>
+        <div class="form-group bg-w">
+          <span style="color: red" *ngIf="message">{{ message }}</span>
+          <input
+            #file
+            type="file"
+            formControlName="imageString"
+            accept="image/*"
+            (change)="preview(file.files)"
+          />
+        </div>
+
+        <div class="row no-margin">
+          <div *ngFor="let key of objectKeys(imagesData)">
+            <div
+              class="image d-inline-flex"
+              [id]="key"
+              (click)="removeImage(key)"
+            >
+              <img
+                [src]="imagesData[key]"
+                height="150"
+                width="150px"
+                style="margin: 3px"
+              />
+              <div class="overlay">
+                <svg class="bi" fill="currentColor">
+                  <use xlink:href="assets/bootstrap-icons.svg#x-circle" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Edit</button>
+      </form>
+    </div>
+    <div class="col-lg-3"></div>
+  </div>
+</div>

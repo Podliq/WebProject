@@ -1,4 +1,4 @@
-﻿namespace ProjectApi.Infrastructure
+﻿namespace ProjectApi.Infrastructure.Extensions
 {
     using System.Linq;
     using System.Security.Claims;

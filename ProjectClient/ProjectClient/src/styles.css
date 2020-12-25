@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --blue: #007bff;
+    --black: #000000;
+    --white: #ffffff;
+    --default: rgb(242, 244, 245);
+    --defaultDark: rgb(235, 235, 235);
+}
+
+form {
+    border: 1px solid var(--black);
+    padding: 10% 10% 10% 10%;
+    background-color: var(--white);
+}
+
+html {
+  background-color: var(--default);
+}
+
+div {
+  background-color: var(--default);
+}
+
+.bg-w {
+  background-color: var(--white);
+}
+
+.bg-dd {
+  background-color: var(--defaultDark);
+}
+
+

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -9,8 +10,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm : FormGroup;
-  
-  constructor(private fb : FormBuilder, private authService: AuthService) { 
+
+  constructor(private fb : FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group( {
       'username': ['', [Validators.required]],
       'password': ['', [Validators.required]],
@@ -22,9 +23,9 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    //always subscribe 
     this.authService.login(this.loginForm.value).subscribe(token => {
       this.authService.saveToken(token);
+      this.router.navigate(['']);
     });
   }
 

@@ -1,0 +1,97 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4 m-2">
+      <div class="card">
+        <div class="card-header">Account information</div>
+        <div class="card-body bg-w">
+          <form
+            class="m-0"
+            style="border: none"
+            [formGroup]="userDetailsForm"
+            (ngSubmit)="saveUserDetails()"
+          >
+            <div class="bg-w form-group m-0">
+              <img
+                class="image"
+                [src]="details?.profilePicture"
+                width="100"
+                height="100"
+              />
+              <div class="bg-w mt-1 mb-2 overflow-hidden" style="display: flex">
+                <input
+                  #file
+                  type="file"
+                  accept="image/*"
+                  (change)="preview(file.files)"
+                />
+              </div>
+            </div>
+            <div class="form-group bg-w">
+              <label for="exampleInputEmail1">Phone number</label>
+              <input
+                type="email"
+                class="form-control"
+                formControlName="phoneNumber"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div class="form-group bg-w">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                formControlName="email"
+                id="email"
+              />
+            </div>
+            <!-- <div *ngIf="password.touched && password.errors?.required" class="alert alert-danger">
+                      this field is required!
+                  </div> -->
+            <button type="submit" class="btn btn-primary">Save</button>
+          </form>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">Change password</div>
+        <div class="card-body bg-w">
+          <form
+            class="m-0"
+            style="border: none"
+            [formGroup]="changePasswordForm"
+            formControlName="oldPassword"
+            (ngSubmit)="changePassword()"
+          >
+            <div class="form-group bg-w">
+              <label for="exampleInputPassword1">Old password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="exampleInputPassword1"
+              />
+            </div>
+            <div class="form-group bg-w">
+              <label for="exampleInputPassword1">New password</label>
+              <input
+                type="password"
+                formControlName="newPassword"
+                class="form-control"
+                id="exampleInputPassword1"
+              />
+            </div>
+            <div class="form-group bg-w">
+              <label for="exampleInputPassword1">Repeat new password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="exampleInputPassword1"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4"></div>
+  </div>
+</div>

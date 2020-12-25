@@ -1,0 +1,11 @@
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > thead > tr > th
+ {
+    vertical-align: middle;
+    text-align: center  ;
+}
+
+.action-btn {
+    margin: 5px;
+}

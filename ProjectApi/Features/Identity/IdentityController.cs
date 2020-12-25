@@ -7,6 +7,7 @@
 
     using Data.Models;
     using Microsoft.AspNetCore.Http;
+    using ProjectApi.Infrastructure.Extensions;
 
     public class IdentityController : ApiController
     {
@@ -65,11 +66,24 @@
 
             // generate token that is valid for 7 days
             var encryptedToken = _identityService.GenerateJwtToken(
-                user.Id, 
-                user.UserName, 
+                user.Id,
+                user.UserName,
                 _applicationSettings.Secret);
 
             return encryptedToken;
+        }
+
+        [Route(nameof(Details))]
+        [HttpGet]
+        public async Task<ActionResult<UserDetailsResponse>> Details()
+            => await _identityService.GetUserDetails(User.GetId());
+
+        [Route(nameof(Details))]
+        [HttpPost]
+        public async Task<ActionResult> Details(UserDetailsResponse data)
+        {
+            await _identityService.SaveUserDetails(User.GetId(), data.Email, data.PhoneNumber, data.ProfilePicture);
+            return Ok();
         }
     }
 }
